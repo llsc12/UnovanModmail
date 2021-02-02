@@ -6,6 +6,9 @@ module.exports.run = async (bot, message, args) => {
 
         let randomnumber = Math.floor((Math.random() * 85) + 35);
         if (randomnumber >= 60) {
+            return message.channel.send("Warmed "+args[0]+" to "+randomnumber+"°C, they're quite burnt now.")
+        }
+        else if (randomnumber >= 45) {
             return message.channel.send("Warmed "+args[0]+" to "+randomnumber+"°C, they're a little burnt now.")
         }
         else {

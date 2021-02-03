@@ -56,7 +56,7 @@ module.exports.run = async (bot, message) => {
                 var subRedditName = index.subreddit_name_prefixed
 
                 if (index.post_hint !== 'image') {
-                    const textembed = new Discord.RichEmbed()
+                    const textembed = new Discord.MessageEmbed()
                         .setTitle(subRedditName)
                         .setColor(color)
                         .setDescription(`[${title}](${link})\n\n${text}`)

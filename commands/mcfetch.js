@@ -1,8 +1,5 @@
-const fetch = require('node-fetch');
 const mcsrv = require('mcsrv');
 const Discord = require('discord.js');
-const client = new Discord.Client({ disableEveryone: true });
-
 
 module.exports.run = async(bot, message, args) => {
     const msg = await message.channel.send("Grabbing data");
@@ -30,4 +27,4 @@ module.exports.help = {
   description: "Grab stats from a server ip",
   usage: "mcfetch <ip>",
 };
-// Goodbye sanity -llsc12, 2nd Feb 2021
+// Goodbye sanity -llsc12, 2nd Feb 2021 :/

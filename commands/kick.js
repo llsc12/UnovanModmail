@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
       message.reply("Usage: &kick <user> <reason>");
       return;
     }
-    let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
+    let kUser = message.guild.members.cache.get(args[0]);
     if(!kUser) return;
     let kReason = args.join(" ").slice(22);
     if(kUser.hasPermission("MANAGE_MESSAGES")) return;

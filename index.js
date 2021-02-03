@@ -225,11 +225,13 @@ client.on("message", async message => {
 
         .addField(prefix + "meme", 'Get a meme')
 
-        .addField(prefix + "esnipe", 'Non-existent Command')
+        .addField(prefix + "esnipe", "Non-existent command, probably won't come to fruition")
 
         .addField(prefix + "warm", 'Warm someone')
 
         .addField(prefix + "cool", 'Cool someone')
+
+        .addField(prefix + "mcfetch", 'Fetch status of Minecraft servers')
 
         .setThumbnail(client.user.displayAvatarURL());
 

@@ -55,7 +55,7 @@ module.exports.run = async (client, message, args, config, queue) => { // Main c
     }
 
 
-    await msg.edit(`✅ Song **${video.videoDetails.title}** has been added to the queue!`)
+    msg.edit(`✅ Song **${video.videoDetails.title}** has been added to the queue!`)
     return await queueSong(video, message, voiceChannel, queue)
   }
 }

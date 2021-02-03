@@ -506,6 +506,10 @@ client.on('message', (message) => {
     }
 });
 
+client.on('message', (message) => {
+  let channel = message.guild.channels.cache.get(channelid)
+  console.log(channel)
+});
 //  end of llsc12's code :(
 
 client.login(bot_token) //Connects to bot

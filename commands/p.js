@@ -30,7 +30,7 @@ module.exports.run = async (client, message, args, config, queue) => { // Main c
 
         if (!videos.length) return message.channel.send("❌ No search results found.")
 
-        await message.channel.send([
+        let msg = await message.channel.send([
           "__**Song selection:**__",
           videos.map(v => `${++index} - **${v.title}**`).join("\n"),
           `**Select your song by sending the number from 1 to ${videos.length} in chat.**`
@@ -55,7 +55,7 @@ module.exports.run = async (client, message, args, config, queue) => { // Main c
     }
 
 
-    await message.channel.send(`✅ Song **${video.videoDetails.title}** has been added to the queue!`)
+    await msg.edit(`✅ Song **${video.videoDetails.title}** has been added to the queue!`)
     return await queueSong(video, message, voiceChannel, queue)
   }
 }

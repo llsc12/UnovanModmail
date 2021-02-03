@@ -30,7 +30,7 @@ module.exports.run = async (client, message, args, config, queue) => { // Main c
 
         if (!videos.length) return message.channel.send("❌ No search results found.")
 
-        let msg = await message.channel.send([
+        let msg = message.channel.send([
           "__**Song selection:**__",
           videos.map(v => `${++index} - **${v.title}**`).join("\n"),
           `**Select your song by sending the number from 1 to ${videos.length} in chat.**`

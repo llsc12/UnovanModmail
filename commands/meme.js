@@ -4,6 +4,30 @@ const url = 'https://www.reddit.com/r/memes/hot/.json?limit=100'
 
 module.exports.run = async (bot, message) => {
     if (message.author.bot) return;
+    let color1 = Math.floor(Math.random() * 15);
+    let color2 = Math.floor(Math.random() * 15);
+    let color3 = Math.floor(Math.random() * 15);
+    let color4 = Math.floor(Math.random() * 15);
+    let color5 = Math.floor(Math.random() * 15);
+    let color6 = Math.floor(Math.random() * 15);
+    let colorletter = new Array();
+    colorletter[0] = '0';
+    colorletter[1] = '1';
+    colorletter[2] = '2';
+    colorletter[3] = '3';
+    colorletter[4] = '4';
+    colorletter[5] = '5';
+    colorletter[6] = '6';
+    colorletter[7] = '7';
+    colorletter[8] = '8';
+    colorletter[9] = '9';
+    colorletter[10] = 'a';
+    colorletter[11] = 'b';
+    colorletter[12] = 'c';
+    colorletter[13] = 'd';
+    colorletter[14] = 'e';
+    colorletter[15] = 'f';
+    let color = (colorletter[color1]+colorletter[color2]+colorletter[color3]+colorletter[color4]+colorletter[color5]+colorletter[color6]);
         https.get(url, (result) => {
             var body = ''
             result.on('data', (chunk) => {
@@ -19,7 +43,7 @@ module.exports.run = async (bot, message) => {
                     var text = index.selftext
                     const textembed = new Discord.MessageEmbed()
                         .setTitle(subRedditName)
-                        .setColor(9384170)
+                        .setColor(color)
                         .setDescription(`[${title}](${link})\n\n${text}`)
                         .setURL(`https://reddit.com/${subRedditName}`)
 
@@ -34,7 +58,7 @@ module.exports.run = async (bot, message) => {
                 if (index.post_hint !== 'image') {
                     const textembed = new Discord.RichEmbed()
                         .setTitle(subRedditName)
-                        .setColor(9384170)
+                        .setColor(color)
                         .setDescription(`[${title}](${link})\n\n${text}`)
                         .setURL(`https://reddit.com/${subRedditName}`)
 
@@ -44,7 +68,7 @@ module.exports.run = async (bot, message) => {
                 const imageembed = new Discord.MessageEmbed()
                     .setTitle(subRedditName)
                     .setImage(image)
-                    .setColor(9384170)
+                    .setColor(color)
                     .setDescription(`[${title}](${link})`)
                     .setURL(`https://reddit.com/${subRedditName}`)
                 message.channel.send(imageembed)

@@ -507,8 +507,14 @@ client.on('message', (message) => {
 });
 
 client.on('message', (message) => {
-  let channel = message.guild.channels.cache.get(channelid)
-  console.log(channel)
+  let channelid = message.channel.id
+  if (channelid != '806635461199528017') return;
+  if (message.content != 'oof') {
+    message.react("❌");
+    message.delete({timeout:2000})
+    return;
+  };
+  message.react("✅");
 });
 //  end of llsc12's code :(
 

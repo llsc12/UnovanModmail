@@ -2,7 +2,7 @@ const https = require('https');
 const Discord = require('discord.js');
 const url = 'https://www.reddit.com/r/memes/hot/.json?limit=100'
 
-module.exports.run = async (bot, message) => {
+module.exports.run = async (bot, message, args) => {
     const times = x => f => {
         if (x > 0) {
             f()
@@ -11,8 +11,6 @@ module.exports.run = async (bot, message) => {
     }
     if (!args[0]) return message.channel.send('Specify an amount of memes to spam');
     times (args[0]) (() => {
-        console.log('honk')
-    });
     if (message.author.bot) return;
     let color1 = Math.floor(Math.random() * 15);
     let color2 = Math.floor(Math.random() * 15);
@@ -66,7 +64,7 @@ module.exports.run = async (bot, message) => {
                 var subRedditName = index.subreddit_name_prefixed
 
                 if (index.post_hint !== 'image') {
-                    const textembed = new Discord.MessageEmbed()
+                    var textembed = new Discord.MessageEmbed()
                         .setTitle(subRedditName)
                         .setColor(color)
                         .setDescription(`[${title}](${link})\n\n${text}`)
@@ -75,7 +73,7 @@ module.exports.run = async (bot, message) => {
                     message.channel.send(textembed)
                 }
                 console.log(image);
-                const imageembed = new Discord.MessageEmbed()
+                var imageembed = new Discord.MessageEmbed()
                     .setTitle(subRedditName)
                     .setImage(image)
                     .setColor(color)
@@ -86,6 +84,7 @@ module.exports.run = async (bot, message) => {
                 console.log('Got an error: ', e)
             })
         })
+    });
 };
 
 module.exports.help = {

@@ -4,7 +4,7 @@ const { bot_token, config_owner, prefix, hd, hj, ServerID } = require('./config.
 const profanity = require('./profanity.json'); // assuming this is an array of words. for the blacklist word filter and snipe filter
 const client = new Discord.Client({ messageSweepInterval: 60, disableEveryone: true }) // Create a client
 const queue = new Map(); // This will be needed for a queue
-
+const oofchannelid = '806635461199528017'
 client.commands = new Discord.Collection(); // Creates a code collection
 
 client.on("ready", async () => { // Logs response when started
@@ -352,6 +352,7 @@ client.on('message', async message => {
 
 client.on('messageDelete', message => {
   if (message.author.bot) return;
+  if (message.channel.id = oofchannelid) return;
   deletedMessages.set(message.channel.id, message);
   const msg = deletedMessages.get(message.channel.id);
   console.log('====================')
@@ -508,10 +509,10 @@ client.on('message', (message) => {
 
 client.on('message', (message) => {
   let channelid = message.channel.id
-  if (channelid != '806635461199528017') return;
+  if (channelid != oofchannelid) return;
   if (message.content != 'oof') {
     message.react("❌");
-    message.delete({timeout:2000})
+    message.delete({timeout:1000})
     return;
   };
   message.react("✅");

@@ -326,7 +326,7 @@ client.on('message', async message => {
       return regex.test(msg.content);             // you may need to escape tokens
       });
       if (isProfane) {
-            if (message.author.id == '381538809180848128') {
+            if (message.author.id == '381538809180848128' || message.author.id == '549604509614211073') {
               const embed = new Discord.MessageEmbed()
               .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true }))
               .setDescription(msg.content)

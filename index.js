@@ -403,7 +403,7 @@ client.on('ready', () => {
 
 client.on("message", async message => { // rules sending system. like .r1 and stuff
   if(message.author.bot) return;
-  if(message.guild.id != 758016990567858187) return;
+  if(message.guild.id != '758016990567858187') return;
 
   let command = message.content
 

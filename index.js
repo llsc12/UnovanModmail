@@ -100,7 +100,6 @@ client.on("channelDelete", (channel) => {
 
 client.on("message", async message => {
   if(message.author.bot) return;
-  if(message.guild.id != ServerID) return;
   let args = message.content.slice(prefix.length).split(' ');
   let command = args.shift().toLowerCase();
 

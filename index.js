@@ -5,36 +5,6 @@ const profanity = require('./profanity.json'); // assuming this is an array of w
 const client = new Discord.Client({ messageSweepInterval: 60, disableEveryone: true }) // Create a client
 const queue = new Map(); // This will be needed for a queue
 
-function RandColor(p1) {
-  if (!p1) { 
-    let color1 = Math.floor(Math.random() * 15);
-    let color2 = Math.floor(Math.random() * 15);
-    let color3 = Math.floor(Math.random() * 15);
-    let color4 = Math.floor(Math.random() * 15);
-    let color5 = Math.floor(Math.random() * 15);
-    let color6 = Math.floor(Math.random() * 15);
-    let colorletter = new Array();
-    colorletter[0] = '0';
-    colorletter[1] = '1';
-    colorletter[2] = '2';
-    colorletter[3] = '3';
-    colorletter[4] = '4';
-    colorletter[5] = '5';
-    colorletter[6] = '6';
-    colorletter[7] = '7';
-    colorletter[8] = '8';
-    colorletter[9] = '9';
-    colorletter[10] = 'a';
-    colorletter[11] = 'b';
-    colorletter[12] = 'c';
-    colorletter[13] = 'd';
-    colorletter[14] = 'e';
-    colorletter[15] = 'f';
-    let color = (colorletter[color1]+colorletter[color2]+colorletter[color3]+colorletter[color4]+colorletter[color5]+colorletter[color6]);
-    return color;
-  } else return p1;
-}
-
 client.commands = new Discord.Collection(); // Creates a code collection
 
 client.on("ready", async () => { // Logs response when started
@@ -88,7 +58,7 @@ client.on("channelDelete", (channel) => {
         if(!person) return;
         let yembed = new discord.MessageEmbed()
         .setAuthor("Thread deleted", client.user.displayAvatarURL())
-        .setColor(RandColor)
+        .setColor('#00FFF4')
         .setThumbnail(client.user.displayAvatarURL())
         .setDescription("Your thread was deleted. If you wish to re-open it or start a new thread, DM me again.")
     return person.send(yembed)
@@ -148,7 +118,7 @@ client.on("message", async message => {
 
             let yembed = new discord.MessageEmbed()
             .setAuthor("Thread closed", client.user.displayAvatarURL())
-            .setColor(RandColor)
+            .setColor('#00FFF4')
             .setThumbnail(client.user.displayAvatarURL())
             .setDescription("Thread is closed by " + message.author.username)
             if(args[0]) yembed.setDescription(args.join(" "))
@@ -185,7 +155,7 @@ client.on("message", async message => {
 
           let nembed = new discord.MessageEmbed()
           .setAuthor("Details", target.user.displayAvatarURL({dynamic: true}))
-          .setColor(RandColor)
+          .setColor('#00FFF4')
           .setThumbnail(target.user.displayAvatarURL({dynamic: true}))
           .setDescription(message.content)
           .addField("Name", target.user.username)
@@ -196,7 +166,7 @@ client.on("message", async message => {
 
           let uembed = new discord.MessageEmbed()
           .setAuthor("Contact thread open")
-          .setColor(RandColor)
+          .setColor('#00FFF4')
           .setThumbnail(client.user.displayAvatarURL())
           .setDescription("You have been contacted by a staff member, please wait until they send another message to you!");
 
@@ -204,13 +174,13 @@ client.on("message", async message => {
 
           let newEmbed = new discord.MessageEmbed()
           .setDescription("Opened The thread: <#" + channel + ">")
-          .setColor(RandColor);
+          .setColor('#00FFF4');
 
           return message.channel.send(newEmbed);
       } else if(command == "help") {
           let embed = new discord.MessageEmbed()
           .setAuthor('Unovan Modmail', client.user.displayAvatarURL())
-          .setColor(RandColor)
+          .setColor('#00FFF4')
         
         .addField(hd + "Modmail" + hj, 'Modmail commands')
 
@@ -280,7 +250,7 @@ client.on("message", async message => {
         if(!member) return message.channel.send('Unable To Send Message')
     
         let lembed = new discord.MessageEmbed()
-        .setColor(RandColor)
+        .setColor('#00FFF4')
         .setFooter(message.author.username, message.author.displayAvatarURL({dynamic: true}))
         .setDescription(message.content)
     
@@ -306,7 +276,7 @@ client.on("message", async message => {
 
           let sembed = new discord.MessageEmbed()
           .setAuthor("Thread created")
-          .setColor(RandColor)
+          .setColor('#00FFF4')
           .setThumbnail(client.user.displayAvatarURL())
           .setDescription("Thread is now created, you will be contacted by staff soon.")
 
@@ -314,7 +284,7 @@ client.on("message", async message => {
 
           let eembed = new discord.MessageEmbed()
           .setAuthor("DETAILS", message.author.displayAvatarURL({dynamic: true}))
-          .setColor(RandColor)
+          .setColor('#00FFF4')
           .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
           .addField("Reason", message.content)
           .addField("Name", message.author.username)
@@ -324,7 +294,7 @@ client.on("message", async message => {
       }
 
       let xembed = new discord.MessageEmbed()
-      .setColor(RandColor)
+      .setColor('#00FFF4')
       .setFooter(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
       .setDescription(message.content)
 
@@ -360,13 +330,13 @@ client.on('message', async message => {
               const embed = new Discord.MessageEmbed()
               .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true }))
               .setDescription(msg.content)
-              .setColor(RandColor);
+              .setColor('#00FFF4');
               message.channel.send(embed).catch(err => console.error(err));
             } else {
               const embed = new Discord.MessageEmbed()
               .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true }))
               .setDescription('Message blocked by word filter.')
-              .setColor(RandColor);
+              .setColor('#00FFF4');
               message.channel.send(embed).catch(err => console.error(err));
             }
           }
@@ -374,7 +344,7 @@ client.on('message', async message => {
       const embed = new Discord.MessageEmbed()
       .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true }))
       .setDescription(msg.content)
-      .setColor(RandColor);
+      .setColor('#00FFF4');
       message.channel.send(embed).catch(err => console.error(err));
       }}
     
@@ -406,55 +376,55 @@ client.on("message", async message => { // rules sending system. like .r1 and st
 
   if (command == (".r1")) {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription(`Racism is absolutely not tolerated in this server. Use of it is an insta warn no matter whether it's "a joke" or not.`)
     .setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}));
     message.channel.send(rembed).catch(err => console.error(err));
   } else if (command == '.r2') {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription('Do not be outright toxic to anyone. Seen once is a verbal warning, second is an actual warning.')
     .setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}));
     message.channel.send(rembed).catch(err => console.error(err));
   } else if (command == '.r3') {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription(`If a member states they do not want to be pinged, do not ping them. If you are there at the time they state they don't want to be pinged, you will be issued a warn. If you aren't there or didn't notice, you will receive a verbal warning and then a warn if done again.`)
     .setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}));
     message.channel.send(rembed).catch(err => console.error(err));
   } else if (command == '.r4') {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription('Advertising is a straight no. Straight warn if seen and advertisement will be removed.')
     .setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}));
     message.channel.send(rembed).catch(err => console.error(err));
   } else if (command == '.r5') {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription('No having your whole username contain special characters. Being unpingable is extremely annoying. If you have a name like this, you will be asked to change it. If you refuse, you will be warned and have your name changed by a staff member.')
     .setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}));
     message.channel.send(rembed).catch(err => console.error(err));
   } else if (command == '.r6') {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription('Bot commands not allowed anywhere except #〈🤖〉commands. The commands allowed anywhere are ?afk, ?whois, Memer commands and &warm, &cool, &van, &snipe and other fun commands.')
     .setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}));
     message.channel.send(rembed).catch(err => console.error(err));
   } else if (command == '.r7') {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription('All nsfw is to be kept in #〈🔞〉nsfw. I doubt everybody wants to see what you shady people post. Warn if seen outside of this channel.')
     .setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}));
     message.channel.send(rembed).catch(err => console.error(err));
   } else if (command == '.r8') {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription('Do not disrespect someone because of their sexuality or beliefs. As our community expands, we will get many different types of people, with different points of view and sexuality. You guys must learn to accept this - not disrespect this.')
     .setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}));
     message.channel.send(rembed).catch(err => console.error(err));
   } else if (command == '.r9') {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription('Staff will now be using statuses to signify whether they are free or not.')
     .addField('Green','Free to help you.')
     .addField('Orange','They are AFK.')
@@ -464,55 +434,55 @@ client.on("message", async message => { // rules sending system. like .r1 and st
     message.channel.send(rembed).catch(err => console.error(err));
   } else if (command == '.gaia') {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription('Please refrain from mentioning "Gaia, gaia wars, reforged", etc.')
     .setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}));
     message.channel.send(rembed).catch(err => console.error(err));
   } else if (command == '.r10') {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription('You are not entitled to anything. If you think otherwise, please leave.')
     .setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}));
     message.channel.send(rembed).catch(err => console.error(err));
   } else if (command == '.r11') {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription("Keep it chill in chat. If you're being generally unpleasant, you may be subject to moderator action.")
     .setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}));
     message.channel.send(rembed).catch(err => console.error(err));
   } else if (command == '.r12') {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription("Server staff has the final say in moderation decisions. That's why they're staff. To appeal a moderation decision, please DM a staff member or send a Modmail via our bot.")
     .setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}));
     message.channel.send(rembed).catch(err => console.error(err));
   } else if (command == '.r13') {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription("Do not beg/plead for any role or extra permissions.")
     .setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}));
     message.channel.send(rembed).catch(err => console.error(err));
   } else if (command == '.r14') {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription("No loopholing through word filters, they exist for a reason. Same goes for rules, don't find loopholes through them.")
     .setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}));
     message.channel.send(rembed).catch(err => console.error(err));
   } else if (command == '.r15') {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription("For god's sake, this is an online Discord server. don't take everything too seriously, or get too offended.")
     .setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}));
     message.channel.send(rembed).catch(err => console.error(err));
   } else if (command == '.r34') {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription("Oi cunt im not a porn bot")
     .setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}));
     message.channel.send(rembed).catch(err => console.error(err));
   } else if (command == '.r63') {
     const rembed = new Discord.MessageEmbed()
-    .setColor(RandColor)
+    .setColor('#00FFF4')
     .setDescription("Oi cunt im not a porn bot")
     .setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}));
     message.channel.send(rembed).catch(err => console.error(err));

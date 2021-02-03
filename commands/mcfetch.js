@@ -5,6 +5,7 @@ module.exports.run = async(bot, message, args) => {
     const msg = await message.channel.send("Grabbing data");
     if (!args[0]) return msg.edit('Wait- No ip address?!');
     let dldata = await mcsrv(args[0]);
+    await msg.edit('Clearly this isnt working')
     let mcembed = new Discord.MessageEmbed()
     .setColor('#00FF00')
     .setDescription('Server Status')
@@ -13,11 +14,11 @@ module.exports.run = async(bot, message, args) => {
     .addField('Online?',dldata.online)
     .addField('Direct IP',dldata.ip)
     .addField('Player Count',dldata.players.online+'/'+dldata.players.max+' currently online')
-    .addField('MOTD','_ _')
-    .addField('_ _',dldata.motd.clean[0])
-    .addField('_ _',dldata.motd.clean[1])
-    .addField('_ _','_ _')
+    .addField('MOTD')
+    .addField(dldata.motd.clean[0])
+    .addField(dldata.motd.clean[1])
     .setFooter('Requested by '+message.author.tag+', powered by api.mcsrvstat.us', message.author.displayAvatarURL({dynamic: true}));
+    msg.edit('API Response received')
     msg.edit(mcembed)
   };
 

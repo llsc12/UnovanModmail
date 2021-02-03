@@ -543,10 +543,19 @@ client.on('message', (message) => {
 client.on("message", async message => {
   if(message.author.bot) return;
   if(message.guild.id != ServerID) return;
-  let command = message.content.slice(prefix.length).split(' ');
-  if (command != 'announce') return;
-  let args = message.content.slice('&announce'.length).split(' ');
-  console.log(args);
+  let args = message.content.slice(prefix.length).split(' ');
+  let command = args.shift().toLowerCase();
+  if (command == 'announcementembed') {
+    let contentTrim = message.content.slice(prefix.length).split('announcementembed ');
+    let embedtext = (contentTrim[1].match(/.{1,250}/g))
+    let announceembed = new Discord.MessageEmbed()
+    .setDescription('Server Announcement')
+    .addField(embedtext[0]+'_ _',embedtext[1]+'_ _')
+    .addField(embedtext[2]+'_ _',embedtext[3]+'_ _')
+    .setColor(0255255)
+    .setAuthor(message.author.tag,message.author.displayAvatarURL({dynamic: true}));
+    message.channel.send(announceembed).catch(err => console.log(err));
+  }
 });
 //  end of llsc12's code :(
 

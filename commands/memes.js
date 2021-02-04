@@ -49,7 +49,7 @@ module.exports.run = async (bot, message, args) => {
                 if (index.post_hint !== 'image') {
 
                     var text = index.selftext
-                    const textembed = new Discord.MessageEmbed()
+                    var textembed = new Discord.MessageEmbed()
                         .setTitle(subRedditName)
                         .setColor(color)
                         .setDescription(`[${title}](${link})\n\n${text}`)
@@ -72,7 +72,6 @@ module.exports.run = async (bot, message, args) => {
 
                     message.channel.send(textembed)
                 }
-                console.log(image);
                 var imageembed = new Discord.MessageEmbed()
                     .setTitle(subRedditName)
                     .setImage(image)

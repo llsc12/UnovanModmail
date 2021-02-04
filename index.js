@@ -490,7 +490,7 @@ client.on("message", async message => { // rules sending system. like .r1 and st
   }
 });
 
-client.on('message', (message) => {
+client.on('message', async (message) => {
   if (message.content) {
     const profane = !!profanity.find((word) => {
       const regex = new RegExp(`\\b${word}\\b`, 'i'); // if the phrase is not alphanumerical,
@@ -501,18 +501,21 @@ client.on('message', (message) => {
       if (message.author.id == 549604509614211073) return;  //Don't delete if the message author's id is one of these
       if (message.author.id == 384477573314510850) return;
 
-      return message.delete()
-      .catch(err => console.err);
+      try {
+        return message.delete();
+      } catch (err) {
+        return console.err;
+      }
       }
     }
 });
 
-client.on('message', (message) => {
-  let channelid = message.channel.id
-  if (channelid != oofchannelid) return;
+client.on('message', async (message) => {
+  let msgchanid = message.channel.id
+  if (msgchanid != oofchannelid) return;
   if (message.content != 'oof') {
     message.react("❌");
-    message.delete({timeout:1000})
+    message.delete({timeout:2000})
     return;
   };
   message.react("✅");

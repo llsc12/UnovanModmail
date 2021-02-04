@@ -1,6 +1,6 @@
 const https = require('https');
 const Discord = require('discord.js');
-const url = 'https://www.reddit.com/r/memes/hot/.json?limit=100'
+const url = 'https://www.reddit.com/r/memes/hot/.json?limit=300'
 
 module.exports.run = async (bot, message, args) => {
     const times = x => f => {

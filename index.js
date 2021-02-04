@@ -514,7 +514,7 @@ client.on('message', async (message) => {
 
 client.on('message', async (message) => {
   if (message.channel.id != oofchannelid) return;
-  if (message.content != 'oof') {
+  if (message.content != 'lynonce') {
     message.react("❌");
     message.delete({timeout:2000})
     return;

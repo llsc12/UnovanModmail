@@ -353,7 +353,6 @@ client.on('message', async message => {
 
 client.on('messageDelete', message => {
   if (message.author.bot) return;
-  if (message.channel.id = oofchannelid) return;
   deletedMessages.set(message.channel.id, message);
   const msg = deletedMessages.get(message.channel.id);
   console.log('====================')

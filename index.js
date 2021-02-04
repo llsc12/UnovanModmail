@@ -222,6 +222,8 @@ client.on("message", async message => {
 
         .addField(prefix + "meme", 'Get a meme')
 
+        .addField(prefix + "memes", 'Get multiple memes')
+
         .addField(prefix + "esnipe", "Non-existent command, probably won't come to fruition")
 
         .addField(prefix + "warm", 'Warm someone')
@@ -511,14 +513,14 @@ client.on('message', async (message) => {
 });
 
 client.on('message', async (message) => {
-  let msgchanid = message.channel.id
-  if (msgchanid != oofchannelid) return;
+  if (message.channel.id != oofchannelid) return;
   if (message.content != 'oof') {
     message.react("❌");
     message.delete({timeout:2000})
     return;
-  };
-  message.react("✅");
+  } else {
+    message.react("✅");
+  }
 });
 //  end of llsc12's code :(
 

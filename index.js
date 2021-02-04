@@ -4,7 +4,7 @@ const { bot_token, config_owner, prefix, hd, hj, ServerID } = require('./config.
 const profanity = require('./profanity.json'); // assuming this is an array of words. for the blacklist word filter and snipe filter
 const client = new Discord.Client({ messageSweepInterval: 60, disableEveryone: true }) // Create a client
 const queue = new Map(); // This will be needed for a queue
-const oofchannelid = '806635461199528017'
+const oofchannelid = '806858496263979008'
 client.commands = new Discord.Collection(); // Creates a code collection
 
 client.on("ready", async () => { // Logs response when started

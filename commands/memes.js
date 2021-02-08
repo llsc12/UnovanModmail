@@ -57,9 +57,8 @@ module.exports.run = async (bot, message, args) => {
 
                     message.channel.send(textembed)
                 }
-                if (!index.preview.images[0]) {
-                    console.log('no image for meme command')
-                } else {
+                if (!index.preview.images[0]) return 
+                else {
                     var image = index.preview.images[0].source.url.replace('&amp;', '&')
                 }
                 var title = index.title

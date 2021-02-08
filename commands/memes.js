@@ -57,8 +57,11 @@ module.exports.run = async (bot, message, args) => {
 
                     message.channel.send(textembed)
                 }
-
-                var image = index.preview.images[0].source.url.replace('&amp;', '&')
+                if (!index.preview.images[0]) {
+                    console.log('no image for meme command')
+                } else {
+                    var image = index.preview.images[0].source.url.replace('&amp;', '&')
+                }
                 var title = index.title
                 var link = 'https://reddit.com' + index.permalink
                 var subRedditName = index.subreddit_name_prefixed

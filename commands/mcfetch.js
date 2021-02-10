@@ -2,13 +2,13 @@ const mcsrv = require('mcsrv');
 const Discord = require('discord.js');
 
 module.exports.run = async(bot, message, args) => {
+  const msg = await message.channel.send("Grabbing data");
+  if (!args[0]) return msg.edit('Wait- No ip address?!');
+  let dldata = await mcsrv(args[0]);
+  msg.edit('Clearly this isnt working')
   async function main(r) {
     var i = 1
     do {
-    const msg = await message.channel.send("Grabbing data");
-    if (!args[0]) return msg.edit('Wait- No ip address?!');
-    let dldata = await mcsrv(args[0]);
-    msg.edit('Clearly this isnt working')
     let mcembed = new Discord.MessageEmbed()
     .setColor('#00FFF4')
     .setDescription('Server Status')
@@ -28,6 +28,7 @@ module.exports.run = async(bot, message, args) => {
     }
     while (i < 6);
   }
+  main();
   };
 
 module.exports.help = {

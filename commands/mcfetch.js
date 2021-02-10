@@ -2,7 +2,7 @@ const mcsrv = require('mcsrv');
 const Discord = require('discord.js');
 
 module.exports.run = async(bot, message, args) => {
-  function main(r) {
+  async function main(r) {
     var i = 1
     do {
     const msg = await message.channel.send("Grabbing data");

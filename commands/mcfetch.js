@@ -1,5 +1,6 @@
 const mcsrv = require('mcsrv');
 const Discord = require('discord.js');
+let sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 module.exports.run = async(bot, message, args) => {
   const msg = await message.channel.send("Grabbing data");

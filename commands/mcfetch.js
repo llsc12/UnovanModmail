@@ -5,11 +5,12 @@ let sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 module.exports.run = async(bot, message, args) => {
   const msg = await message.channel.send("Grabbing data");
   if (!args[0]) return msg.edit('Wait- No ip address?!');
-  let dldata = await mcsrv(args[0]);
   msg.edit('Clearly this isnt working')
+  let dldata = 'NaN';
   async function main(r) {
     var i = 1
     do {
+    dldata = await mcsrv(args[0]);
     let mcembed = new Discord.MessageEmbed()
     .setColor('#00FFF4')
     .setDescription('Server Status')

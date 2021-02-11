@@ -4,10 +4,11 @@ let sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 module.exports.run = async(bot, message, args) => {
   let repeat = (parseInt(args[1])+1)
-  if (!args[1]) repeat = 5;
+  if (!args[1]) repeat = 4;
+  if (repeat >= 11) return msg.edit('You can\'t refresh that many times')
   const msg = await message.channel.send("Grabbing data");
   if (!args[0]) return msg.edit('Wait- No ip address?!');
-  msg.edit('i think something broke :\'(') // :'(
+  msg.edit('i think something broke (also maybe someone else is using this command)') // :'(
   let dldata = 'NaN';
   async function main(r) {
     var i = 1
@@ -24,10 +25,10 @@ module.exports.run = async(bot, message, args) => {
     .addField('MOTD', '_ _')
     .addField('_ _', dldata.motd.clean[0])
     .addField('_ _', dldata.motd.clean[1])
-    .setFooter('refresh '+i+' of '+(repeat-1)+', Requested by '+message.author.tag+', powered by api.mcsrvstat.us', message.author.displayAvatarURL({dynamic: true}));
+    .setFooter('Refresh '+i+' of '+(repeat-1)+', Requested by '+message.author.tag+', powered by api.mcsrvstat.us', message.author.displayAvatarURL({dynamic: true}));
     msg.edit('_ _')
     msg.edit(mcembed)
-    await sleep(30000);
+    await sleep(25000);
     i++;
     }
     while (i < repeat);

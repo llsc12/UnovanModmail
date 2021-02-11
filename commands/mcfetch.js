@@ -3,9 +3,11 @@ const Discord = require('discord.js');
 let sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 module.exports.run = async(bot, message, args) => {
+  let repeat = (parseInt(args[1])+1)
+  if (!args[1]) repeat = 5;
   const msg = await message.channel.send("Grabbing data");
   if (!args[0]) return msg.edit('Wait- No ip address?!');
-  msg.edit('Clearly this isnt working')
+  msg.edit('i think something broke :\'(') // :'(
   let dldata = 'NaN';
   async function main(r) {
     var i = 1
@@ -22,13 +24,13 @@ module.exports.run = async(bot, message, args) => {
     .addField('MOTD', '_ _')
     .addField('_ _', dldata.motd.clean[0])
     .addField('_ _', dldata.motd.clean[1])
-    .setFooter('refresh '+i+' of 5, Requested by '+message.author.tag+', powered by api.mcsrvstat.us', message.author.displayAvatarURL({dynamic: true}));
+    .setFooter('refresh '+i+' of '+(repeat-1)+', Requested by '+message.author.tag+', powered by api.mcsrvstat.us', message.author.displayAvatarURL({dynamic: true}));
     msg.edit('_ _')
     msg.edit(mcembed)
     await sleep(30000);
     i++;
     }
-    while (i < 6);
+    while (i < repeat);
   }
   main();
   };

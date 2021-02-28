@@ -223,7 +223,7 @@ client.on("message", async message => {
 
         .addField(prefix + "memes", 'Get multiple memes')
 
-        .addField(prefix + "esnipe", "Non-existent command, working on it")
+        .addField(prefix + "esnipe", "~~Shoot someone with electric sniper~~ Revive edited messages")
 
         .addField(prefix + "warm", 'Warm someone')
 
@@ -427,7 +427,7 @@ client.on("message", async message => {
   if(message.author.bot) return;
   let args = message.content.slice(prefix.length).split(' ');
   let command = args.shift().toLowerCase();
-  
+
   if (command == (".r1")) {
     const rembed = new Discord.MessageEmbed()
     .setColor('#00FFF4')

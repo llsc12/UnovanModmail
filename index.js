@@ -223,7 +223,7 @@ client.on("message", async message => {
 
         .addField(prefix + "memes", 'Get multiple memes')
 
-        .addField(prefix + "esnipe", "Non-existent command, probably won't come to fruition")
+        .addField(prefix + "esnipe", "Non-existent command, working on it")
 
         .addField(prefix + "warm", 'Warm someone')
 
@@ -358,10 +358,10 @@ client.on('message', async message => {
   const command = args.shift().toLowerCase();
 
   switch (command) {
-    case '&snipe':
+    case `${prefix}esnipe`:
 
       const msg = editedMessages.get(message.channel.id);
-      if (!msg) return message.reply('Could not find any deleted messages in this channel.');
+      if (!msg) return message.reply('Could not find any edited messages in this channel.');
 
         if (msg.content) {
       const isProfane = !!profanity.find((word) => {

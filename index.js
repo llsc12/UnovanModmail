@@ -306,7 +306,7 @@ client.on("message", async message => {
 })
 
 //  llsc12's code :D
-
+const editedMessages = new Discord.Collection();
 const deletedMessages = new Discord.Collection();
 
 client.on('message', async message => {
@@ -351,6 +351,48 @@ client.on('message', async message => {
     
 }});
 
+client.on('message', async message => {
+  if (message.author.bot) return;
+
+  const args = message.content.trim().split(/\s+/g);
+  const command = args.shift().toLowerCase();
+
+  switch (command) {
+    case '&snipe':
+
+      const msg = editedMessages.get(message.channel.id);
+      if (!msg) return message.reply('Could not find any deleted messages in this channel.');
+
+        if (msg.content) {
+      const isProfane = !!profanity.find((word) => {
+      const regex = new RegExp(`\\b${word}\\b`, 'i'); // if the phrase is not alphanumerical,
+      return regex.test(msg.content);             // you may need to escape tokens
+      });
+      if (isProfane) {
+            if (message.author.id == '381538809180848128' || message.author.id == '549604509614211073') {
+              const embed = new Discord.MessageEmbed()
+              .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true }))
+              .setDescription(msg.content)
+              .setColor('#00FFF4');
+              message.channel.send(embed).catch(err => console.error(err));
+            } else {
+              const embed = new Discord.MessageEmbed()
+              .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true }))
+              .setDescription('Message blocked by word filter.')
+              .setColor('#00FFF4');
+              message.channel.send(embed).catch(err => console.error(err));
+            }
+          }
+      else {
+      const embed = new Discord.MessageEmbed()
+      .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true }))
+      .setDescription(msg.content)
+      .setColor('#00FFF4');
+      message.channel.send(embed).catch(err => console.error(err));
+      }}
+    
+}});
+
 client.on('messageDelete', message => {
   if (message.author.bot) return;
   deletedMessages.set(message.channel.id, message);
@@ -358,6 +400,16 @@ client.on('messageDelete', message => {
   console.log('====================')
   console.log(msg.author.tag+"'s message was deleted.")
   console.log(msg.content);
+});
+
+client.on("messageUpdate", message => {
+  if (message.author.bot) return;
+  editedMessages.set(message.channel.id, message);
+  const msg = editedMessages.get(message.channel.id);
+  console.log('====================')
+  console.log(msg.author.tag+"'s message was edited.")
+  console.log(msg.content);
+  
 });
 
 const activities_list = require('./statuses.json');// Activity array
@@ -371,7 +423,8 @@ client.on('ready', () => {
 });
 
 
-client.on("message", async message => { // rules sending system. like .r1 and stuff
+client.on("message", async message => {
+// rules sending system. like .r1 and stuff
   if(message.author.bot) return;
   let command = message.content
 

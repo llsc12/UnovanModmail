@@ -12,3 +12,6 @@ nvm imma make a template here.
     "ServerID": "the server id",
     "hj": "----"
 }
+
+once u done go install the node packages needed with 'npm i'
+then start the bot with node or just do 'npm run start'

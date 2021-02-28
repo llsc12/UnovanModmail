@@ -6,7 +6,7 @@ nvm imma make a template here.
 
 {
     "bot_token": "Bot token ofc",
-    "config_owner": "the user account that owns this token",
+    "config_owner": "the user id that owns this bot",
     "prefix": "&",
     "hd": "----",
     "ServerID": "the server id",

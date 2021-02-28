@@ -359,7 +359,6 @@ client.on('message', async message => {
 
   switch (command) {
     case `${prefix}esnipe`:
-
       const msg = editedMessages.get(message.channel.id);
       if (!msg) return message.reply('Could not find any edited messages in this channel.');
 
@@ -373,7 +372,6 @@ client.on('message', async message => {
               const embed = new Discord.MessageEmbed()
               .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true }))
               .setDescription(msg.content)
-              .setFooter(msg.channel.fetchMessage())
               .setColor('#00FFF4');
               message.channel.send(embed).catch(err => console.error(err));
             } else {
@@ -388,7 +386,6 @@ client.on('message', async message => {
       const embed = new Discord.MessageEmbed()
       .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true }))
       .setDescription(msg.content)
-      .setFooter(msg.channel.fetchMessage())
       .setColor('#00FFF4');
       message.channel.send(embed).catch(err => console.error(err));
       }}

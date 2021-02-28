@@ -409,7 +409,6 @@ client.on("messageUpdate", message => {
   console.log('====================')
   console.log(msg.author.tag+"'s message was edited.")
   console.log(msg.content);
-  
 });
 
 const activities_list = require('./statuses.json');// Activity array
@@ -426,8 +425,9 @@ client.on('ready', () => {
 client.on("message", async message => {
 // rules sending system. like .r1 and stuff
   if(message.author.bot) return;
-  let command = message.content
-
+  let args = message.content.slice(prefix.length).split(' ');
+  let command = args.shift().toLowerCase();
+  
   if (command == (".r1")) {
     const rembed = new Discord.MessageEmbed()
     .setColor('#00FFF4')

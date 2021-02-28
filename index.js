@@ -424,7 +424,7 @@ client.on('ready', () => {
 client.on("message", async message => {
 // rules sending system. like .r1 and stuff
   if(message.author.bot) return;
-  let args = message.content.slice(prefix.length).split(' ');
+  let args = message.content.split(' ');
   let command = args.shift().toLowerCase();
 
   if (command == (".r1")) {

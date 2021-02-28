@@ -316,7 +316,7 @@ client.on('message', async message => {
   const command = args.shift().toLowerCase();
 
   switch (command) {
-    case '&snipe':
+    case `${prefix}snipe`:
 
       const msg = deletedMessages.get(message.channel.id);
       if (!msg) return message.reply('Could not find any deleted messages in this channel.');
@@ -373,6 +373,7 @@ client.on('message', async message => {
               const embed = new Discord.MessageEmbed()
               .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true }))
               .setDescription(msg.content)
+              .setFooter(msg.channel.fetchMessage())
               .setColor('#00FFF4');
               message.channel.send(embed).catch(err => console.error(err));
             } else {
@@ -387,6 +388,7 @@ client.on('message', async message => {
       const embed = new Discord.MessageEmbed()
       .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true }))
       .setDescription(msg.content)
+      .setFooter(msg.channel.fetchMessage())
       .setColor('#00FFF4');
       message.channel.send(embed).catch(err => console.error(err));
       }}

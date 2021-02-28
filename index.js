@@ -414,7 +414,7 @@ const activities_list = require('./statuses.json');// Activity array
 
 client.on('ready', () => {
   setInterval(() => {
-      const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list (in this case 5).
+      const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list.
       client.user.setActivity(activities_list[index], { type: 'PLAYING' }); // sets to one of any in array
   }, 7000); // Runs this every 7 seconds.
   
@@ -568,7 +568,8 @@ client.login(bot_token) //Connects to bot
 
 // -----------------------------------------------------------------------------------------------------------------------------
 
-// Part of this code is pulled from a friend's code and from dependencies. The bot and the code was entirely created by me though
+// Part of this code is pulled from a friend's code and from dependencies. The bot and the code was entirely created by me though.
+//                                                                                                                         EDIT: llsc12 has made a lot of modifications too.
 
 // ------------------------------------------------------------------------------------------------------------------------------
 

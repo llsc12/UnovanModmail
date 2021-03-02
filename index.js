@@ -417,7 +417,6 @@ client.on('ready', () => {
       const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list.
       client.user.setActivity(activities_list[index], { type: 'PLAYING' }); // sets to one of any in array
   }, 7000); // Runs this every 7 seconds.
-  
 });
 
 
@@ -562,6 +561,13 @@ client.on('message', async (message) => {
     }
 });
 
+client.on('ready', () => {
+  PingServer()
+});
+
+function PingServer() { // Ping server every 10 seconds
+  setInterval(function(){ client.guilds.cache.get('758016990567858187').channels.cache.get('816404028070035467').send('PING'); }, 10000);
+}
 //  end of llsc12's code :(
 
 client.login(bot_token) //Connects to bot

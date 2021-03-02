@@ -566,8 +566,9 @@ client.on('ready', () => {
 });
 
 function PingServer() { // Ping server every 10 seconds
-  setInterval(function(){ client.guilds.cache.get('758016990567858187').channels.cache.get('816404028070035467').send('PING'); }, 10000);
+  setInterval(function(){ client.guilds.cache.get('758016990567858187').channels.cache.get('816404028070035467').send('PING'); }, 20000);
 }
+
 //  end of llsc12's code :(
 
 client.login(bot_token) //Connects to bot

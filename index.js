@@ -10,6 +10,49 @@ client.on("ready", async () => { // Logs response when started
   console.log(`Thanks Germ. And yes, your humour is bad. `);
 });
 
+const si = require('systeminformation');
+client.on('message', (message) => {
+    if (!message.guild || message.author.bot) return;
+    if (message.content.startsWith(prefix)) {
+
+    // Le command handler :)
+    let args = message.content.split(prefix)[1].split(" ");
+    let command = args.shift().toLowerCase();
+    if (command == 'status' || command == 'stat' || command == 'stats' || command == 'info') {
+		si.cpu()
+    	.then(cpu => {
+			si.mem()
+			.then(mem => {
+			console.log(mem)
+			let totalSeconds = (client.uptime / 1000);
+			let days = Math.floor(totalSeconds / 86400);
+			totalSeconds %= 86400;
+			let hours = Math.floor(totalSeconds / 3600);
+			totalSeconds %= 3600;
+			let minutes = Math.floor(totalSeconds / 60);
+			let seconds = Math.floor(totalSeconds % 60);
+			let daysText = (days == 1 ? "day" : "days");
+			let hoursText = (hours == 1 ? "hour" : "hours");
+			let minutesText = (minutes == 1 ? "minute" : "minutes");
+			let daysFinal = (days >= 1 ? days + " " + daysText + ", " : "");
+			let hoursFinal = (hours >= 1 ? hours + " " + hoursText + ", " : "");
+			let minutesFinal = (minutes >= 1 ? minutes + " " + minutesText + " and " : "");
+			let uptime = `${daysFinal}${hoursFinal}${minutesFinal}${seconds} seconds`;
+			let embed = new Discord.MessageEmbed()
+				.setColor("RANDOM")
+				.setTitle(`System & Process Information for ${client.user.username}`)
+				.setURL('https://discord.gg/YHnyVmKQwc')
+				.setTimestamp()
+				.setFooter('Requested by '+message.author.tag, message.author.displayAvatarURL({dynamic: true}))
+				.addField('Process Information', `**Uptime** \n${uptime} \n**Serving** \n${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} members \n**Running** \n${process.release.name} ${process.version}`)
+				.addField(`System Information`,`**CPU** \n${cpu.cores} Core ${cpu.manufacturer} ${cpu.brand}@${cpu.speed}GHz ${process.config.variables.host_arch} \n**Memory** \nTotal Memory: ${(mem.total/1000000000).toFixed(2)}GB \nUsed Memory: ${(mem.used/1000000000).toFixed(2)}GB \nFree Memory: ${(mem.free/1000000000).toFixed(2)}GB`)
+			message.channel.send(embed)
+			})
+		})
+	}
+  }
+});
+
 let commands = {} // A bit of pre-work to set all things up
 fs.readdir("./commands/", (err, files) => {
   if (err) console.error(err);

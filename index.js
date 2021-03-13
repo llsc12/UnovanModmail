@@ -608,8 +608,8 @@ client.on('ready', () => {
   PingServer()
 });
 
-function PingServer() { // Ping server every 10 seconds
-  setInterval(function(){ client.guilds.cache.get('758016990567858187').channels.cache.get('816404028070035467').send('PING'); }, 20000);
+function PingServer() { // Ping server every 30 seconds
+  setInterval(function(){ client.guilds.cache.get('758016990567858187').channels.cache.get('816404028070035467').send('PING'); }, 30000);
 }
 
 //  end of llsc12's code :(

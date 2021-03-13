@@ -605,6 +605,7 @@ client.on('message', async (message) => {
 });
 
 client.on('ready', () => {
+  if (!client.user.username.includes('Unovan')) return;
   PingServer()
 });
 

@@ -223,7 +223,7 @@ client.on("message", async message => {
 
         .addField(prefix + "memes", 'Get multiple memes')
 
-        .addField(prefix + "esnipe", "Non-existent command, probably won't come to fruition")
+        .addField(prefix + "esnipe", "~~Shoot someone with electric sniper~~ Revive edited messages")
 
         .addField(prefix + "warm", 'Warm someone')
 
@@ -306,7 +306,7 @@ client.on("message", async message => {
 })
 
 //  llsc12's code :D
-
+const editedMessages = new Discord.Collection();
 const deletedMessages = new Discord.Collection();
 
 client.on('message', async message => {
@@ -316,10 +316,51 @@ client.on('message', async message => {
   const command = args.shift().toLowerCase();
 
   switch (command) {
-    case '&snipe':
+    case `${prefix}snipe`:
 
       const msg = deletedMessages.get(message.channel.id);
       if (!msg) return message.reply('Could not find any deleted messages in this channel.');
+
+        if (msg.content) {
+      const isProfane = !!profanity.find((word) => {
+      const regex = new RegExp(`\\b${word}\\b`, 'i'); // if the phrase is not alphanumerical,
+      return regex.test(msg.content);             // you may need to escape tokens
+      });
+      if (isProfane) {
+            if (message.author.id == '381538809180848128' || message.author.id == '549604509614211073') {
+              const embed = new Discord.MessageEmbed()
+              .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true }))
+              .setDescription(msg.content)
+              .setColor('#00FFF4');
+              message.channel.send(embed).catch(err => console.error(err));
+            } else {
+              const embed = new Discord.MessageEmbed()
+              .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true }))
+              .setDescription('Message blocked by word filter.')
+              .setColor('#00FFF4');
+              message.channel.send(embed).catch(err => console.error(err));
+            }
+          }
+      else {
+      const embed = new Discord.MessageEmbed()
+      .setAuthor(msg.author.tag, msg.author.displayAvatarURL({ dynamic: true }))
+      .setDescription(msg.content)
+      .setColor('#00FFF4');
+      message.channel.send(embed).catch(err => console.error(err));
+      }}
+    
+}});
+
+client.on('message', async message => {
+  if (message.author.bot) return;
+
+  const args = message.content.trim().split(/\s+/g);
+  const command = args.shift().toLowerCase();
+
+  switch (command) {
+    case `${prefix}esnipe`:
+      const msg = editedMessages.get(message.channel.id);
+      if (!msg) return message.reply('Could not find any edited messages in this channel.');
 
         if (msg.content) {
       const isProfane = !!profanity.find((word) => {
@@ -360,20 +401,30 @@ client.on('messageDelete', message => {
   console.log(msg.content);
 });
 
+client.on("messageUpdate", message => {
+  if (message.author.bot) return;
+  editedMessages.set(message.channel.id, message);
+  const msg = editedMessages.get(message.channel.id);
+  console.log('====================')
+  console.log(msg.author.tag+"'s message was edited.")
+  console.log(msg.content);
+});
+
 const activities_list = require('./statuses.json');// Activity array
 
 client.on('ready', () => {
   setInterval(() => {
-      const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list (in this case 5).
+      const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list.
       client.user.setActivity(activities_list[index], { type: 'PLAYING' }); // sets to one of any in array
   }, 7000); // Runs this every 7 seconds.
-  
 });
 
 
-client.on("message", async message => { // rules sending system. like .r1 and stuff
+client.on("message", async message => {
+// rules sending system. like .r1 and stuff
   if(message.author.bot) return;
-  let command = message.content
+  let args = message.content.split(' ');
+  let command = args.shift().toLowerCase();
 
   if (command == (".r1")) {
     const rembed = new Discord.MessageEmbed()
@@ -510,13 +561,22 @@ client.on('message', async (message) => {
     }
 });
 
+client.on('ready', () => {
+  PingServer()
+});
+
+function PingServer() { // Ping server every 10 seconds
+  setInterval(function(){ client.guilds.cache.get('758016990567858187').channels.cache.get('816404028070035467').send('PING'); }, 20000);
+}
+
 //  end of llsc12's code :(
 
 client.login(bot_token) //Connects to bot
 
 // -----------------------------------------------------------------------------------------------------------------------------
 
-// Part of this code is pulled from a friend's code and from dependencies. The bot and the code was entirely created by me though
+// Part of this code is pulled from a friend's code and from dependencies. The bot and the code was entirely created by me though.
+//                                                                                                                         EDIT: llsc12 has made a lot of modifications too.
 
 // ------------------------------------------------------------------------------------------------------------------------------
 

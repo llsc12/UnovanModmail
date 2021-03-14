@@ -19,7 +19,7 @@ client.on('message', (message) => {
     let args = message.content.split(prefix)[1].split(" ");
     let command = args.shift().toLowerCase();
     if (command == 'status' || command == 'stat' || command == 'stats' || command == 'info') {
-      if (args[0] != `<!${client.user.id}>`) return;
+      if (args[0] != `<@${client.user.id}>`) return;
       si.cpu()
       .then(cpu => {
           si.mem()

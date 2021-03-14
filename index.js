@@ -270,7 +270,11 @@ client.on("message", async message => {
         
         .addField(prefix + "ping", 'Shows the bot\'s ping')
 
-        .addField(hd + "Misc." + hj, 'Miscellaneous/Special Commands')
+        .addField(prefix + "mcfetch", 'Fetch status of Minecraft servers')
+
+        .addField(prefix + "status", "Get data of any of llsc12's bots. Has shortcuts like info, stat and stats")
+
+        .addField(hd + "Misc." + hj, 'Miscellaneous or Fun Commands')
 
         .addField(prefix + "van", 'Yes, you can *van* someone.')
 
@@ -288,7 +292,11 @@ client.on("message", async message => {
 
         .addField(prefix + "cool", 'Cool someone')
 
-        .addField(prefix + "mcfetch", 'Fetch status of Minecraft servers')
+        .addField(prefix + "hentai", `Yeah... Go do '${prefix}hentai help'`)
+
+        .addField(prefix + "minesweeper", `Go do '${prefix}ms help'`)
+
+        .addField()
 
         .setThumbnail(client.user.displayAvatarURL());
 

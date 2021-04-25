@@ -30,7 +30,6 @@ client.on('message', (message) => {
               .then(temp => {
                   si.currentLoad()
                   .then(load => {
-                      console.log(nodeOS)
                       let totalSeconds = (client.uptime / 1000);
                       let uptime = convToDays(totalSeconds);
                       let embed = new Discord.MessageEmbed()

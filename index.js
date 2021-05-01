@@ -16,7 +16,7 @@ client.on('message', (message) => {
     if (message.content.startsWith(prefix)) {
 
     // Le command handler :)
-    let args = message.content.split(prefix)[1].split(" ");
+    let args = message.content.slice(prefix.length)[1].split(" ");
     let command = args.shift().toLowerCase();
     if (command == 'status' || command == 'stat' || command == 'stats' || command == 'info') {
       if (args[0] != `<@${client.user.id}>`) return;
@@ -95,12 +95,6 @@ client.on("message", async message => {
     } catch(e) {}
   } else if (message.content.match(`^<@!?${client.user.id}>`)) return message.channel.send(`👋 My prefix is \`${prefix}\`. Commands are ${Object.keys(commands).map(c => `\`${prefix}${c}\``).join(", ")}.`); // Says this when pinged.
 })
-
-let getPermissionLevel = (member) => { // Sets up perms
-  if (config_owner == member.user.id) return 2;
-  if (member.hasPermission("MANAGE_MESSAGES")) return 1;
-  return 0;
-}
 
 client.on("ready", () => {
 console.log("gonna be like calum. don't mind me. ok dnd is on.")

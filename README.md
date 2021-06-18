@@ -1,4 +1,5 @@
 # UnovanModmail
+## This bot is my first bot and a friend created this bot originally, you can see details at the bottom of index.js
 This is the code for Unovan Modmail.
 Config file should probably exist. 
 check the start of index.js to see what should be in it. 
